@@ -83,66 +83,6 @@ def emote():
     print(kappa)
 
 
-def get_selection(mode, table_max_val):
-    # Returns whatever the user selects at the relevant prompt
-    # Modes are 'online_channels' and 'database'
-
-    try:
-        channel_selection = input(' Number? ')
-
-        # Whatever is selected is passed to this list
-        # This is then iterated upon to get the list of parameters
-        # that will be passed back to the parent function
-        final_selection = []
-
-        entered_numbers = channel_selection.split()
-        if not entered_numbers:
-            # Everything should error out in case a null selection is
-            # made when we're operating purely with database values
-            # Otherwise, we're going for a random selection
-            # with default quality video
-            if mode == 'database':
-                raise ValueError
-            elif mode == 'online_channels':
-                final_selection = [[
-                    random.randrange(0, table_max_val),
-                    Options.video.default_quality]]
-                emote()
-                return final_selection
-
-        else:
-            quality_dict = {
-                'l': 'low',
-                'm': 'medium',
-                'h': 'high',
-                's': 'source'}
-
-            entered_numbers = [i.split('-') for i in entered_numbers]
-            for i in entered_numbers:
-                if int(i[0]) > table_max_val:
-                    raise IndexError
-
-                try:
-                    selected_quality = quality_dict[i[1]]
-                except (KeyError, IndexError):
-                    # Anything that has a valid digit that prefixes it
-                    # is started at the default_quality
-                    selected_quality = Options.video.default_quality
-
-                final_selection.append([
-                    int(i[0]) - 1,
-                    selected_quality])
-
-            return final_selection
-
-    except (IndexError, ValueError):
-        print(Colors.RED + ' Invalid input.' + Colors.ENDC)
-        exit(1)
-    except (KeyboardInterrupt, EOFError):
-        print()
-        exit(1)
-
-
 class GenerateWatchTable():
     # Applies to the watch functions
     # Will wait for an input and return it to the function
@@ -253,21 +193,9 @@ class GenerateWatchTable():
             final_columns.append(display_columns)
 
         self.table_display(final_columns)
-        final_selection = get_selection(
-            'online_channels', len(self.table_data_incoming))
 
-        # Generate the final selection dictionary
-        # Its keys are the names of the channels
-        # Corresponding values are channel params
-        # Channel quality is inserted as a value on the basis
-        # of its selection from the relevant function
-        selected_channels = {}
-        for i in final_selection:
-            channel_name = self.display_list[i[0]][3]['name']
-            selected_channels[channel_name] = self.table_data_incoming[channel_name]
-            selected_channels[channel_name]['quality'] = i[1]
-
-        return selected_channels
+        exit(0)
+        return
 
 
 class GenerateDatabaseTable:
