@@ -1,17 +1,12 @@
 # twitchy
-CLI streamlink wrapper for twitch.tv
+Lists twitch channels that are currently online
 
-**Requires streamlink, python >= 3.6, python-requests**
-
-This script hopefully fulfills the needs of the discerning git cloner who wants to watch Twitch, and hates the CPU utilization of having a browser/flash running, especially since the current status of hardware accelerated video on Linux browsers is somewhere between non existent and abysmal.
+**python >= 3.6, python-requests**
 
 Features:
 * Tracking of most watched channels.
 * Custom layouts: User adjustable colors and columns
-* VOD support
 * Sync your followed accounts to a local sqlite database that does not judge you.
-* Stream multiple... streams at once.
-* Integration with your conky / dmenu / rofi
 * The ability to display alternate names for games / streamers. If your happiness is somehow contingent upon displaying "Hearthstone: Heroes of Warcraft" as "Wizard Poker", well, you've come to the right place.
 
 ## Installation
@@ -22,9 +17,6 @@ Features:
         # python setup.py install
 
 3. Launch with `twitchy`
-
-Alternatively, use the AUR package:
-https://aur.archlinux.org/packages/twitchy-git
 
 Please delete `~/.config/twitchy3/*` and restart twitchy before reporting any issues.
 
@@ -82,52 +74,3 @@ Display all strings matching *obr*:
     Custom quality settings: Specify with hyphen next to channel number.
     E.g. <1-h 2-s 3-l> will simultaneously play
     channel 1 in high quality, 2 in source quality, and 3 in low quality.
-
-Watch specified channel(s) - Do not have to be in local database:
-
-    $ twitchy -w northernlion cobaltstreak
-    Checking channels...
-    The Binding of Isaac: Afterbirth
-    1 northernlion                5757          Egg
-    Channel number(s): 1
-
-## Plugins
-
-Thanks to twitchy's `--non-interactive` flag, it is easy to integrate it
-with various tools, like the ones below.
-
-### Albert
-
-Supports the excellent [Albert launcher](https://github.com/albertlauncher/albert)
-<p align="center">
-  <img width="500" height="320" src="https://i.imgur.com/JRp00ie.png">
-</p>
-
-Move `twitchy_albert.py` in the `plugins` directory to `/usr/share/albert/org.albert.extension.python/modules`
-
-### Py3status
-
-Supports the excellent [py3status](https://github.com/ultrabug/py3status)
-<p align="center">
-  <img src="https://user-images.githubusercontent.com/852504/53009602-84416280-3401-11e9-9f95-c2b2ce58f711.png" />
-</p>
-
-Move `twitchy_py3status.py` in the `plugins` directory to somewhere
-in your py3status module paths as `twitchy.py`.
-
-### Rofi
-
-Supports a custom [rofi](https://github.com/DaveDavenport/rofi) mode
-<p align="center">
-  <img width="500" src="http://apetresc-screenshot.s3.amazonaws.com/2018-01-04-23.21.42.png" />
-</p>
-
-Move `rofi-twitchy` in the `plugins` directory to somewhere on your
-`PATH`, and invoke it with:
-
-```
-$ rofi -modi twitchy:rofi-twitchy -show twitchy
-```
-
-Of course, you probably want to bind this command to a keyboard shortcut
-in your window manager.
