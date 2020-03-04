@@ -136,11 +136,11 @@ class GenerateWatchTable():
 
             print(
                 ' ' +
-                Options.colors.numbers + str(count + 1).rjust(list_digits) +
+                Options.colors.numbers + '-' +
                 ' ' +
                 template.format(
                     Options.colors.column1 + i[0],
-                    Options.colors.column2 + i[1].rjust(8),
+                    Options.colors.column2 + i[1].rjust(7),
                     Options.colors.column3 + i[2]) +
                 Colors.ENDC)
 
