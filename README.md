@@ -58,6 +58,8 @@ Add channels to local database:
 
     $ twitchy -a bobross <channel2> <channel3> ...
     $ twitchy -s <your twitch username>
+    
+If your username is not found, try again using all lowercase letters.
 
 Display all strings matching *obr*:
 
